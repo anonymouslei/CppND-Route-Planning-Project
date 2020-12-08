@@ -61,12 +61,8 @@ RouteModel::Node *RoutePlanner::NextNode() {
         return a->h_value + a->g_value > b->h_value + b->g_value;
     });
 
-    // std::cout << "the first sum value(should be max): " << open_list.front()->h_value + open_list.front()->g_value << std::endl;
-    // std::cout << "the end sum value(should be min) : " << open_list.back()->h_value + open_list.back()->g_value << std::endl;
     RouteModel::Node *lowestSumNode = open_list.back();
-    // std::cout << "the size of open list before pop: " << open_list.size() << std::endl;
     open_list.pop_back();
-    // std::cout << "the size of open list after pop: " << open_list.size() << std::endl;
 
     return lowestSumNode;
 }
@@ -98,9 +94,7 @@ std::vector<RouteModel::Node> RoutePlanner::ConstructFinalPath(RouteModel::Node 
 
     std::reverse(std::begin(path_found), std::end(path_found));
 
-    // std::cout << "distance before metricscale: " << distance << std::endl;
     distance *= m_Model.MetricScale(); // Multiply the distance by the scale of the map to get meters.
-    // std::cout << "distance after metricscale: " << distance << std::endl;
     return path_found;
 
 }
@@ -129,6 +123,5 @@ void RoutePlanner::AStarSearch() {
         current_node = NextNode();
         AddNeighbors(current_node);
     }
-    // std::cout << "out of while loop" << std::endl;
 
 }
